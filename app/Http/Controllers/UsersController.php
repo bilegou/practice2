@@ -93,7 +93,7 @@ class UsersController extends Controller
 
     public function destroy(User $user){
 
-        // $this->authorize('destroy', $user);
+        $this->authorize('destroy', $user);
         $user->delete();
         session()->flash('success','删除用户成功');
         return redirect()->back();

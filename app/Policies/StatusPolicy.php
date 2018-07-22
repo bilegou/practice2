@@ -4,8 +4,9 @@ namespace App\Policies;
 
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use App\Models\Status;
 
-class UserPolicy
+class StatusPolicy
 {
     use HandlesAuthorization;
 
@@ -19,11 +20,7 @@ class UserPolicy
         //
     }
 
-    public function update(User $current,User $user){
-        return $current->id === $user->id;
-    }
-
-    public function destroy(User $currentUser,User $user){
-        return $currentUser->is_admin && $currentUser->id !== $user->id;
+    public function destroy(User $user,Status $status){
+        return  $status->user_id === $user->id;
     }
 }
